@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "./ExpenseForm.scss";
 
 const ExpenseForm = (props) => {
-  const [title, setTitle] = useState("ras");
-  const [amount, setAmount] = useState("123");
+  const [title, setTitle] = useState("");
+  const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
 
   const titleChangeHandler = (event) => {

@@ -1,39 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
-let DUMMY_EXPENSE = [
-  {
-    id: "e1",
-    date: new Date(2021, 3, 21),
-    title: "Movie",
-    amount: "208",
-  },
-  {
-    id: "e2",
-    date: new Date(2021, 3, 21),
-    title: "Food",
-    amount: "500",
-  },
-  {
-    id: "e3",
-    date: new Date(2021, 3, 21),
-    title: "Nike Cap",
-    amount: "1195",
-  },
-  {
-    id: "e4",
-    date: new Date(2021, 3, 21),
-    title: "Car Fuel by Credit Card",
-    amount: "1000",
-  },
-];
+
+let DUMMY_EXPENSE = [];
+
+const FIREBASE_API =
+  "https://expense-manager-5f028-default-rtdb.firebaseio.com/expenses.json";
+
 const App = () => {
   const [expenses, setExpenses] = useState(DUMMY_EXPENSE);
 
+  const getExpenses = () => {
+    // Fetch Expenses
+    fetch(FIREBASE_API)
+      .then((res) => res.json())
+      .then((data) => {
+        const expenseData = [];
+
+        for (const key in data) {
+          if (data.hasOwnProperty(key)) {
+            expenseData.push({ ...data[key], id: key });
+          }
+        }
+
+        console.log(expenseData);
+        // TODO - Check infinite calls once we have data
+        setExpenses(expenseData);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    getExpenses();
+  }, []);
+
   const onNewExpenseHandler = (expense) => {
-    const updatedExpenses = [expense, ...expenses];
-    setExpenses(updatedExpenses);
+    // const updatedExpenses = [expense, ...expenses];
+    // setExpenses(updatedExpenses);
+
+    fetch(FIREBASE_API, {
+      method: "POST",
+      body: JSON.stringify(expense),
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => getExpenses())
+      .catch((error) => alert(error));
   };
 
   return (

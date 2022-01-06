@@ -3,7 +3,9 @@ import "./ExpenseItem.scss";
 import Card from "../UI/Card";
 
 const ExpenseItem = (props) => {
-  const expenseDate = props.date.toLocaleString("en-US", { dateStyle: "full" });
+  const expenseDate = new Date(props.date).toLocaleString("en-US", {
+    dateStyle: "full",
+  });
 
   return (
     <Card className="expense-item">
