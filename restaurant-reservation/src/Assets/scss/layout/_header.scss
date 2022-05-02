@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+.Header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  &--logo {
+    color: $white;
+    font-size: 19px;
+    max-width: 100px;
+    line-height: 17px;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    font-family: "Pacifico", cursive;
+    span:first-child {
+      color: $secondary;
+    }
+    span::first-letter {
+      font-weight: $font-bold;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      border: 2px solid;
+      width: 30px;
+      border-radius: 4px;
+    }
+  }
+}

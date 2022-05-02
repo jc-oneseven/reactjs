@@ -1,0 +1,621 @@
+.sub-header {
+  border-bottom: 1px solid $gray-300;
+  padding-left: $container-outer-padding;
+  padding-right: $container-outer-padding;
+  .nav-tabs {
+    border: 0;
+    .nav-link {
+      background-color: transparent;
+      color: $gray-dark;
+      font-size: $font-size - 2;
+      font-weight: $font-medium;
+      padding: 1.5em 0;
+      border: 0;
+      position: relative;
+      cursor: pointer;
+      &.active {
+        color: $primary;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          width: 30%;
+          border-bottom: 3px solid $primary;
+          border-radius: $border-radius;
+        }
+      }
+      // &:hover,
+      // &.active,
+      // &:focus {
+      // }
+    }
+  }
+
+  .search-wrapper {
+    position: relative;
+    .icon-search {
+      position: absolute;
+      left: 10px;
+    }
+    .form-control {
+      text-indent: 20px;
+      &:focus {
+        width: 280px;
+      }
+    }
+  }
+  .form-control {
+    background-color: $white;
+    width: 150px;
+    font-size: $font-size - 2;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .btn-toolbar {
+    background-color: $white;
+    border: 1px solid $gray-300;
+    height: 35px;
+    align-items: center;
+    padding: 4px 10px;
+  }
+}
+
+// .sub-header-table,
+// .sub-header-access-management,
+// .sub-header-configuration {
+//   .form-control {
+//     background-color: $white;
+//     width: 250px;
+//     &:focus {
+//       box-shadow: none;
+//     }
+//     @media screen and (max-width: 1400px) {
+//       zoom: 85%;
+//     }
+//   }
+//   .dropdown-submit-label {
+//     font-size: $font-size + 2px;
+//     font-weight: $font-semibold;
+//     margin-bottom: 5px;
+//     @media screen and (max-width: 1400px) {
+//       font-size: 16px;
+//     }
+//   }
+//   .nav-link {
+//     color: $gray-800;
+//     padding: 30px 0px 25px 0px;
+//     @media screen and (max-width: 1400px) {
+//       padding: 17px 0px 15px 0px;
+//       font-size: $font-size + 2;
+//     }
+//     margin: 0 0 0 50px;
+//     font-size: $font-size + 6px;
+//     transition: 0.3s all ease-in-out;
+//     display: flex;
+//     align-items: center;
+//     &:hover {
+//       color: $gray-900;
+//     }
+//   }
+
+//   @keyframes active-animation {
+//     from {
+//       width: 0px;
+//     }
+//     to {
+//       width: 50px;
+//     }
+//   }
+//   .active {
+//     color: $gray-900;
+//     font-weight: $font-semibold;
+//     padding-bottom: 25px;
+//     @media screen and (max-width: 1400px) {
+//       padding-bottom: 15px;
+//     }
+//     position: relative;
+//     &::after {
+//       position: absolute;
+//       content: "";
+//       height: 3px;
+//       bottom: 0px;
+//       @media screen and (max-width: 1400px) {
+//         bottom: 0px;
+//       }
+//       left: 0;
+//       background-color: $primary;
+//       border-radius: 5px;
+//       animation-name: active-animation;
+//       animation-duration: 0.3s;
+//       animation-timing-function: ease-in-out;
+//       width: 50px;
+//     }
+//   }
+//   .btn-select,
+//   .btn-search,
+//   .btn-filter {
+//     background-color: $white;
+//     border: 1px solid $gray-400;
+//     margin: 0 5px;
+//     transition: 0.3s all ease-in-out;
+//     @media screen and (max-width: 1400px) {
+//       max-height: 33px;
+//       max-width: 33px;
+//     }
+//     &:focus {
+//       box-shadow: none;
+//     }
+//     &:hover {
+//       border-color: $primary;
+//     }
+//   }
+//   .btn-select {
+//     width: 200px;
+//   }
+//   .dropdown {
+//     .icon-select-arrow-down {
+//       font-size: $font-size - 5px;
+//     }
+//   }
+//   .dropdown-toggle::after {
+//     display: none;
+//   }
+//   .btn-search,
+//   .btn-filter {
+//     height: 39px;
+//     width: 39px;
+//     padding: 0;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     &:hover {
+//       color: $primary;
+//     }
+//   }
+//   .btn-filter {
+//     margin-right: 50px;
+//     @media screen and (max-width: 1400px) {
+//       margin-right: 40px;
+//     }
+//   }
+//   .filter-wrapper {
+//     width: 350px;
+
+//     .filter-select {
+//       width: 100%;
+//       background-color: $white;
+//       padding-right: 25px;
+//       padding-top: 2px;
+//       padding-bottom: 2px;
+//       border-color: $gray-400;
+//       border-radius: 2px;
+//       margin-bottom: 10px;
+//       @media screen and (max-width: 1400px) {
+//         font-size: $font-size - 2;
+//       }
+//       &:focus {
+//         box-shadow: none;
+//       }
+//       &:focus-visible,
+//       &:hover {
+//         border: 1px solid #009cde;
+//         outline: 0;
+//       }
+//     }
+//   }
+//   .filter-button-wrapper {
+//     @media screen and (max-width: 1400px) {
+//       zoom: 85%;
+//     }
+//     border-top: 1px solid $gray-400;
+//     padding: 15px;
+//   }
+//   .btn-dropdown-clear {
+//     border: 2px solid $primary;
+//     color: $primary;
+//     margin-right: 10px;
+//     transition: 0.2s all ease-in-out;
+//     @media screen and (max-width: 1400px) {
+//       font-size: $font-size - 2;
+//     }
+//   }
+//   .btn-dropdown-apply {
+//     border: 2px solid $primary;
+//     color: $white;
+//     background-color: $primary;
+//     transition: 0.2s all ease-in-out;
+//     @media screen and (max-width: 1400px) {
+//       font-size: $font-size - 2;
+//     }
+//   }
+//   .dropdown-filter {
+//     &::before {
+//       content: "";
+//       position: absolute;
+//       transform: rotate(45deg);
+//       width: 10px;
+//       height: 10px;
+//       background-color: $white;
+//       border-top: 1px solid $gray-400;
+//       border-left: 1px solid $gray-400;
+//       top: -6px;
+//       right: 15px;
+//       @media screen and (max-width: 1400px) {
+//         right: 12px;
+//       }
+//     }
+//   }
+//   .dropdown-filter {
+//     margin-top: 6px !important;
+//   }
+//   .form-control {
+//     background-color: $white;
+//     width: 250px;
+//     padding-right: 25px;
+//     @media screen and (max-width: 1400px) {
+//       padding-right: 30px;
+//     }
+//     &:focus {
+//       box-shadow: none;
+//     }
+//   }
+//   .search-wrapper {
+//     position: relative;
+//     .icon-add {
+//       right: 10px;
+//       transform: rotate(45deg);
+//       position: absolute;
+//       color: $danger;
+//       cursor: pointer;
+//       font-size: $font-size - 5px;
+//     }
+//   }
+// }
+
+// //Access manageent & Configuration
+
+// .sub-header-access-management,
+// .sub-header-configuration {
+//   padding: 25px 50px;
+//   align-items: center;
+//   @media screen and (max-width: 1400px) {
+//     padding: 15px 40px;
+//   }
+//   .btn-new-form {
+//     margin-left: 5px;
+//     @media screen and (max-width: 1400px) {
+//       font-size: 12px;
+//     }
+//   }
+//   h2 {
+//     @media screen and (max-width: 1400px) {
+//       font-size: $font-size + 4;
+//       margin-bottom: 0;
+//     }
+//   }
+//   .btn-filter {
+//     margin-right: 0;
+//   }
+//   .btn-search,
+//   .btn-delete {
+//     background-color: $white;
+//     border: 1px solid $gray-400;
+//     transition: 0.3s all ease-in-out;
+//     font-size: $font-size + 3;
+//     padding: 4px 10px;
+//     margin-left: 10px;
+//     &:focus {
+//       box-shadow: none;
+//     }
+//     &:hover {
+//       border-color: $primary;
+//     }
+//   }
+// }
+
+// .sub-header-configuration {
+//   .btn-new-form {
+//     white-space: nowrap;
+//     font-weight: $font-semibold;
+//     &:focus {
+//       box-shadow: none;
+//     }
+//   }
+//   .icon-add {
+//     font-size: $font-size - 5px;
+//   }
+// }
+
+// //Edit Form
+
+// .sub-header-edit-form {
+//   padding: 0 45px 0 20px;
+//   @media screen and (max-width: 1400px) {
+//     padding: 0 30px 0 20px;
+//   }
+//   .btn-approve-form,
+//   .btn-reject-form,
+//   .btn-save,
+//   .btn-submit,
+//   .btn-edit-form {
+//     @media screen and (max-width: 1400px) {
+//       font-size: 13px;
+//     }
+//   }
+//   .btn-edit-form {
+//     font-weight: $font-semibold;
+//   }
+//   .form-info {
+//     padding: 25px 30px;
+//     @media screen and (max-width: 1400px) {
+//       zoom: 80%;
+//       padding: 15px 20px;
+//     }
+//     white-space: nowrap;
+//     position: relative;
+//     &:first-child {
+//       &::after {
+//         content: "";
+//         position: absolute;
+//         width: 1px;
+//         background-color: $gray-400;
+//         height: 50px;
+//         right: 0;
+//       }
+//     }
+//     &:nth-child(2) {
+//       &::after {
+//         content: "";
+//         position: absolute;
+//         width: 1px;
+//         background-color: $gray-400;
+//         height: 20px;
+//         right: 0;
+//       }
+//     }
+//   }
+//   .btn {
+//     &:focus {
+//       box-shadow: none;
+//     }
+//   }
+//   .btn-save,
+//   .btn-submit,
+//   .btn-approve-form,
+//   .btn-reject-form {
+//     height: min-content;
+//     margin: 0 5px;
+//     font-weight: $font-semibold;
+//     white-space: nowrap;
+//   }
+//   .btn-comment,
+//   .btn-delete,
+//   .btn-exit {
+//     @media screen and (max-width: 1400px) {
+//       font-size: 14px;
+//     }
+//     background-color: $white;
+//     border: 1px solid $gray-400;
+//     margin: 0 5px;
+//     transition: 0.3s all ease-in-out;
+//     &:focus {
+//       box-shadow: none;
+//     }
+//     &:hover {
+//       color: $primary;
+//       border-color: $primary;
+//     }
+//   }
+//   .btn-exit {
+//     .icon-wrapper {
+//       padding: 4px 0;
+//       transform: rotate(45deg);
+//       @media screen and (max-width: 1400px) {
+//         padding: 4px 0;
+//       }
+//     }
+//   }
+//   .dropdown-submit {
+//     .form-control {
+//       background-color: $white;
+//     }
+//     .dropdown-submit-label {
+//       font-size: $font-size + 2px;
+//       font-weight: $font-semibold;
+//       margin-bottom: 10px;
+//       @media screen and (max-width: 1400px) {
+//         font-size: 16px;
+//       }
+//     }
+//   }
+//   .btn-dropdown-cancel,
+//   .btn-dropdown-save,
+//   .btn-dropdown-approve,
+//   .btn-dropdown-reject {
+//     @media screen and (max-width: 1400px) {
+//       font-size: 13px;
+//     }
+//     width: 100px;
+//   }
+//   .btn-dropdown-cancel {
+//     border: 2px solid $primary;
+//     color: $primary;
+//     margin-right: 10px;
+//     transition: 0.2s all ease-in-out;
+//     &:hover {
+//       background-color: $primary;
+//       color: $white;
+//     }
+//   }
+//   .btn-dropdown-save {
+//     margin-left: 10px;
+//     background-color: $primary;
+//     color: $white;
+//     border: 2px solid $primary;
+//   }
+//   .dropdown-submit-draft,
+//   .dropdown-submit-approval,
+//   .dropdown-submit-comment,
+//   .dropdown-reject-form,
+//   .dropdown-approve-form {
+//     &::before {
+//       content: "";
+//       position: absolute;
+//       transform: rotate(45deg);
+//       width: 10px;
+//       height: 10px;
+//       background-color: $white;
+//       border-top: 1px solid $gray-400;
+//       border-left: 1px solid $gray-400;
+//       top: -6px;
+//       right: 20px;
+//     }
+//   }
+//   .dropdown-submit-draft {
+//     margin-left: -110px !important;
+//     margin-top: 6px !important;
+//     @media screen and (max-width: 1400px) {
+//       margin-left: -130px !important;
+//     }
+//   }
+//   .dropdown-submit-approval {
+//     margin-left: -50px !important;
+//     margin-top: 6px !important;
+//     @media screen and (max-width: 1400px) {
+//       margin-left: -80px !important;
+//     }
+//   }
+
+//   .dropdown-submit-comment {
+//     margin-left: -50px !important;
+//     margin-top: 6px !important;
+//     @media screen and (max-width: 1400px) {
+//       margin-left: -80px !important;
+//     }
+//   }
+//   .dropdown-reject-form {
+//     margin-left: -170px !important;
+//     margin-top: 6px !important;
+//     @media screen and (max-width: 1400px) {
+//       margin-left: -190px !important;
+//     }
+//     .form-control {
+//       background-color: $white;
+//     }
+//     .btn-dropdown-reject {
+//       border: 2px solid $danger;
+//       background-color: $danger;
+//       margin-right: 10px;
+//       transition: 0.2s all ease-in-out;
+//       color: $white;
+//     }
+//   }
+//   .dropdown-approve-form {
+//     margin-left: -150px !important;
+//     margin-top: 6px !important;
+//     @media screen and (max-width: 1400px) {
+//       margin-left: -170px !important;
+//     }
+//     .form-control {
+//       background-color: $white;
+//     }
+//     .btn-dropdown-approve {
+//       border: 2px solid $success;
+//       background-color: $success;
+//       margin-right: 10px;
+//       transition: 0.2s all ease-in-out;
+//       color: $white;
+//     }
+//   }
+//   .dropdown-submit-label {
+//     @media screen and (max-width: 1400px) {
+//       font-size: 16px;
+//     }
+//   }
+// }
+
+// //history
+
+// .sub-header-history {
+//   align-items: center;
+//   @media screen and (max-width: 1400px) {
+//     padding: 15px 30px;
+//   }
+//   padding: 25px 50px;
+//   .dropdown {
+//     .icon-select-arrow-down {
+//       font-size: $font-size - 5px;
+//     }
+//   }
+//   h2 {
+//     @media screen and (max-width: 1400px) {
+//       font-size: $font-size + 4;
+//       margin-bottom: 0;
+//     }
+//   }
+//   .dropdown-item {
+//     font-size: 14px;
+//   }
+//   .dropdown-toggle::after {
+//     display: none;
+//   }
+//   .btn-select {
+//     background-color: $white;
+//     border: 1px solid $gray-400;
+//     margin: 0 5px;
+//     transition: 0.3s all ease-in-out;
+//     @media screen and (max-width: 1400px) {
+//       font-size: 14px;
+//       padding: 5px 8px;
+//     }
+//     &:focus {
+//       box-shadow: none;
+//     }
+//     &:hover {
+//       border-color: $primary;
+//     }
+//   }
+//   .btn-select {
+//     width: 200px;
+//   }
+//   .filter-select {
+//     width: 200px;
+//     background-color: $white;
+//     padding-top: 2px;
+//     padding-bottom: 2px;
+//     border-color: $gray-400;
+//     border-radius: 2px;
+//     @media screen and (max-width: 1400px) {
+//       font-size: $font-size - 2;
+//     }
+//     &:focus {
+//       box-shadow: none;
+//     }
+//     &:focus-visible,
+//     &:hover {
+//       border: 1px solid #009cde;
+//       outline: 0;
+//     }
+//   }
+// }
+
+// .search-validation {
+//   position: absolute !important;
+//   white-space: nowrap !important;
+//   right: 50px !important;
+//   color: $danger !important;
+// }
+
+// .icon-arrow-down {
+//   text-decoration: none !important;
+// }
+
+// .search-delete {
+//   position: absolute;
+//   color: #f60900;
+//   right: 86px;
+//   text-decoration: none;
+//   @media screen and (min-width: 1400px) {
+//     right: 100px;
+//   }
+// }

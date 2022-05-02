@@ -1,0 +1,88 @@
+/****************
+  => Theme-colors
+****************/
+
+//
+
+$primary: #090705;
+$primary-dark: #0c314f;
+$primary-light: #f0f9fd;
+$secondary: #ffb142; // Use for Body Background color
+
+/****************
+  => Gray
+****************/
+$gray: #eff1f5;
+$gray-light: #fafcfe; // Table background
+$gray-dark: #05233a; // Text Color
+$gray-editor-info: #f4f4f4;
+$gray-card: #f1f4fb; //cards in sidebar
+$gray-version-sidebar: #f0f3f6;
+
+$white: #ffffff;
+$gray-100: #f5f6fa;
+$gray-200: #cccccc;
+$gray-300: #e0e4ec; // Borders
+$gray-400: #c4c4c4;
+$gray-500: #acb4c7;
+$gray-600: #9da6ba; // Secondary Text
+$gray-700: #7b8a9545;
+$gray-800: #7b8a95;
+$gray-900: #222222;
+$black: #000000;
+
+/***********************
+  => Additional colors
+***********************/
+$orange: $primary;
+
+/***********************
+  => Semantic colors
+***********************/
+$success: #84bd00; // Success actions, positive button color
+$success-light: #e9f3d1;
+$info: #4c84ff; // Info actions
+$info-dark: #1a3365;
+$info-light: #ebf2ff;
+$warning: #f6be02;
+$warning-light: #fff4d6; // Warning actions
+$danger: #f60900; // Danger actions, negative button color
+$danger-light: #fedede;
+
+/****************
+  => for Overlay
+****************/
+$overlay-bg: rgba(0, 0, 0, 0.5);
+
+$light: $gray-600;
+
+/****************
+  => Body
+****************/
+// Settings for the `<body>` element.
+// $body-bg: $secondary;
+
+/*  box-shadow  */
+$primary-box-shadow: rgba(0, 128, 255, 0.25);
+$warning-box-shadow: rgba(255, 208, 28, 0.25);
+$danger-box-shadow: rgba(251, 96, 127, 0.25);
+$dark-box-shadow: rgba(115, 117, 122, 0.25);
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "primary-light": $primary-light,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "gray": $gray,
+  "gray-dark": $gray-dark,
+  "primary-dark": $primary-dark,
+  "light": $light,
+  "black": $black,
+  "orange": $orange,
+  "gray-700": $gray-700,
+  "gray-600": $gray-600,
+  "gray-100": $gray-100,
+);

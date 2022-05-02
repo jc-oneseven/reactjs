@@ -1,0 +1,95 @@
+.form-wrapper {
+  // background-image: url("/assets/img/background.jpg");
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  .row {
+    max-width: 800px;
+    @include media-breakpoint-down(sm) {
+      height: 100%;
+    }
+  }
+  .welcome-info {
+    padding: 40px;
+    // background-image: url("/assets/img/login-bg.jpg");
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+
+    &--subheading {
+      font-size: $font-size-sm;
+      display: block;
+      margin-bottom: 0.5em;
+    }
+    &--title {
+      font-size: $font-size + 4;
+      font-weight: $font-medium;
+      line-height: 1.4em;
+      margin-bottom: 1em;
+      &::after {
+        content: "";
+        margin-top: 0.4em;
+        display: block;
+        border: 2px solid $white;
+        width: 50px;
+        border-radius: $border-radius;
+      }
+    }
+    &--content {
+      font-size: $font-size - 4;
+      line-height: 1.6em;
+    }
+  }
+  .form-col {
+    padding: 40px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+
+  .form-control-password {
+    padding-right: 12px;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    .form-control {
+      border: 0;
+    }
+  }
+  .icon-eye,
+  .icon-eye-disable {
+    font-size: $font-size + 5;
+    cursor: pointer;
+  }
+  .form-control:focus {
+    box-shadow: none;
+  }
+
+  .form-label {
+    color: $gray-dark;
+  }
+}
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  background-color: #fff;
+}

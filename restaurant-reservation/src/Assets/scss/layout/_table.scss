@@ -1,0 +1,898 @@
+//Common table styles
+
+.table-wrapper {
+  padding: 0 $container-outer-padding;
+  table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    // table-layout: fixed;
+    // position: relative;
+    .btn {
+      &:focus {
+        box-shadow: none;
+      }
+    }
+    .data-cell {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 10px;
+      .data-cell-th-label {
+        // flex: 0;
+        // min-width: 100px;
+      }
+    }
+    th,
+    td {
+      padding: 0;
+      font-size: $font-size - 3;
+      font-weight: $font-semibold;
+      border-bottom: 0;
+      vertical-align: middle;
+      &:last-child {
+        width: 40px;
+        padding-left: 10px;
+      }
+    }
+    th {
+      color: $gray-800;
+      text-transform: uppercase;
+      position: sticky;
+      top: 0;
+      background: $body-bg;
+      z-index: 10;
+      //   padding: 0.5em $container-outer-padding;
+    }
+    .table-body {
+      tr {
+        cursor: pointer;
+        background-color: $white;
+        border-radius: 10px;
+        box-shadow: 0px 4px 3px rgba($gray-200, 0.2);
+        border: 1px solid $gray-light;
+        transition: 0.2s all ease-in-out;
+        &:hover {
+          td {
+            border-color: $primary;
+          }
+          box-shadow: -3px 3px 10px $gray-400;
+        }
+      }
+      td {
+        color: $gray-dark;
+
+        &:first-child {
+          border-left-style: solid;
+          border-top-left-radius: 10px;
+          border-bottom-left-radius: 10px;
+        }
+        &:last-child {
+          border-right-style: solid;
+          border-bottom-right-radius: 10px;
+          border-top-right-radius: 10px;
+        }
+      }
+      .btn {
+        &:focus {
+          box-shadow: none;
+        }
+      }
+      .dropdown-action {
+        .dropdown-toggle::after {
+          display: none;
+        }
+        .icon-action {
+          position: relative;
+          width: 4px;
+          height: 4px;
+          background-color: $gray-dark;
+          border-radius: 50%;
+          &::before {
+            content: "";
+            position: absolute;
+            top: -8px;
+            right: 0;
+            width: 4px;
+            height: 4px;
+            background-color: $gray-dark;
+            border-radius: 50%;
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            top: 8px;
+            right: 0;
+            width: 4px;
+            height: 4px;
+            background-color: $gray-dark;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+  option {
+    padding: 10px 20px;
+    border-bottom: 1px solid $gray-400;
+    transition: 0.2s all;
+  }
+  .inactive-row {
+    td {
+      padding: 20px 0;
+    }
+  }
+  .icon-info-blue {
+    cursor: pointer;
+  }
+
+  .select-dropdown,
+  .draggable-dropdown {
+    border: 1px solid $gray-400;
+    color: $gray-dark;
+    width: min-content;
+    border-radius: 5px;
+    padding: 0px;
+    .btn-select {
+      padding: 0px 5px;
+    }
+    .dropdown-toggle::after {
+      display: none;
+    }
+    .icon-select-arrow-down {
+      font-size: $font-size - 7px;
+      margin-left: 5px;
+    }
+    &:hover {
+      border-color: $primary;
+    }
+  }
+
+  .icon-arrow-down,
+  .icon-arrow-up {
+    font-size: $font-size - 5px;
+    cursor: pointer;
+  }
+}
+
+//Forms Table
+
+// .forms-table {
+//   td:nth-child(5),
+//   th:nth-child(5) {
+//     // text-align: center;
+//   }
+
+//   td:last-child,
+//   th:last-child {
+//     text-align: end;
+//   }
+
+//   td:nth-child(9),
+//   th:nth-child(9) {
+//     max-width: 300px;
+//   }
+//   td:nth-child(9) {
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//   }
+
+//   .icon-edit,
+//   .icon-delete,
+//   .icon-duplicate {
+//     font-size: $font-size + 3px;
+//     cursor: pointer;
+//   }
+//   .icon-delete {
+//     color: $danger;
+//   }
+//   .icon-edit {
+//     color: $primary;
+//   }
+//   .icon-duplicate {
+//     color: $orange;
+//   }
+// }
+
+//Access management
+.text-strike {
+  text-decoration: line-through;
+}
+
+.access-management-table-wrapper {
+  @media screen and (max-width: 1400px) {
+    padding: 0px 40px;
+  }
+  .table-body {
+    td {
+      &:first-child {
+        padding-left: 80px;
+        @media screen and (max-width: 1400px) {
+          padding-left: 70px;
+        }
+      }
+      &:last-child {
+        padding-right: 20px;
+        text-align: end;
+      }
+      @media screen and (max-width: 1400px) {
+        padding: 5px 15px;
+      }
+    }
+  }
+  th {
+    @media screen and (max-width: 1400px) {
+      padding: 0px 15px;
+    }
+    &:first-child {
+      padding-left: 80px;
+      @media screen and (max-width: 1400px) {
+        padding-left: 70px;
+      }
+    }
+    &:last-child {
+      padding-right: 20px;
+    }
+  }
+  .name-data {
+    position: relative;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    @media screen and (min-width: 1400px) {
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+    .user-initials {
+      position: absolute;
+      left: -60px;
+      border: 1px solid $gray-400;
+      background-color: $secondary;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      font-weight: $font-semibold;
+      @media screen and (max-width: 1400px) {
+        left: -60px;
+        zoom: 85%;
+      }
+    }
+  }
+
+  td:last-child,
+  th:last-child {
+    text-align: end;
+    @media screen and (max-width: 1400px) {
+      zoom: 85%;
+    }
+  }
+  .icon-edit {
+    font-size: $font-size + 3px;
+    transition: 0.2s all ease-in-out;
+    &:hover {
+      color: $primary;
+    }
+  }
+  .icon-eye-disable,
+  .icon-eye {
+    font-size: $font-size + 6px;
+    text-decoration: none;
+    transition: 0.2s all ease-in-out;
+    &:hover {
+      color: $danger;
+    }
+  }
+  .icon-approve {
+    font-size: $font-size + 10px;
+    transition: 0.2s all ease-in-out;
+    color: $success;
+  }
+  .icon-reject {
+    font-size: $font-size + 10px;
+    transition: 0.2s all ease-in-out;
+    margin-right: 5px;
+    color: $danger;
+  }
+  .badge {
+    &-success {
+      border: 1px solid darken($success-light, 20);
+      background-color: $success-light;
+      color: $success;
+      padding: 2px 15px 3px 15px;
+      border-radius: 5px;
+    }
+    &-danger {
+      border: 1px solid lighten($danger, 30);
+      background-color: $danger-light;
+      color: $danger;
+      padding: 2px 10px 3px 10px;
+      border-radius: 5px;
+    }
+  }
+  .select-status,
+  .select-role {
+    background-color: $white;
+    width: fit-content;
+    padding-right: 25px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-color: $gray-400;
+    border-radius: 5px;
+    &:focus {
+      box-shadow: none;
+    }
+    &:focus-visible,
+    &:hover {
+      border: 1px solid #009cde;
+      outline: 0;
+    }
+  }
+  tr select {
+    background-color: $white;
+    width: fit-content;
+    padding-right: 25px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-color: $gray-400;
+    border-radius: 4px;
+    border-width: 1px;
+    &:focus {
+      border: 1px solid #009cde;
+      box-shadow: none;
+    }
+  }
+  tr select:focus-visible,
+  tr select:hover {
+    border: 1px solid #009cde;
+    outline: 0;
+  }
+}
+
+//configuration table
+
+.configuration-table-wrapper {
+  td:last-child,
+  th:last-child {
+    text-align: end;
+  }
+  tr {
+    select {
+      word-wrap: normal;
+      box-shadow: none;
+      outline: none;
+      border: 0;
+      border-radius: 4px;
+    }
+  }
+  tr select:focus-visible,
+  tr select:hover {
+    border: none;
+    outline: 0;
+  }
+
+  .icon-edit {
+    font-size: $font-size + 3px;
+    transition: 0.2s all ease-in-out;
+    margin: 0;
+    &:hover {
+      color: $primary;
+    }
+  }
+  .icon-eye-disable,
+  .icon-eye {
+    margin: 8px 0;
+    font-size: $font-size + 6px;
+    text-decoration: none;
+    transition: 0.2s all ease-in-out;
+    &:hover {
+      color: $danger;
+    }
+  }
+  .icon-approve {
+    margin: 12px 0;
+    font-size: $font-size + 10px;
+    transition: 0.2s all ease-in-out;
+    color: $success;
+  }
+  .icon-reject {
+    font-size: $font-size + 10px;
+    transition: 0.2s all ease-in-out;
+    margin-right: 5px;
+    color: $danger;
+  }
+  .text-striker {
+    background-color: $gray-200;
+    td {
+      background-color: $gray-200;
+    }
+  }
+
+  td:nth-child(7) {
+    position: relative;
+  }
+
+  td:last-child {
+    @media screen and (max-width: 1400px) {
+      zoom: 85%;
+    }
+  }
+
+  .draggable-dropdown {
+    .btn-select {
+      @media screen and (max-width: 1400px) {
+        font-size: 14px;
+      }
+    }
+    .draggable-items {
+      padding: 5px 10px;
+      border-bottom: 1px solid $gray-400;
+      @media screen and (max-width: 1400px) {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .icon-Draggable {
+    display: none;
+  }
+
+  .li-draggable {
+    .icon-Draggable {
+      display: inline-block;
+      cursor: pointer;
+      @media screen and (max-width: 1400px) {
+        font-size: 16px;
+      }
+    }
+  }
+  .form-name-input {
+    @media screen and (max-width: 1400px) {
+      zoom: 85%;
+    }
+    .form-control {
+      background-color: $white;
+      color: $gray-dark;
+      padding: 1px 5px;
+      &::placeholder {
+        color: $gray-dark;
+      }
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+  .icon-Draggable {
+    padding-left: 20px;
+  }
+  tr select {
+    word-wrap: normal;
+    box-shadow: none;
+    outline: none;
+    border: 0;
+    border-radius: 4px;
+  }
+
+  .draggable-items {
+    background-color: #fff;
+  }
+}
+
+.in-progress-table-wrapper {
+  tr {
+    select {
+      word-wrap: normal;
+      box-shadow: none;
+      outline: none;
+      border: 0;
+      border-radius: 4px;
+    }
+  }
+  .form-name-input {
+    @media screen and (max-width: 1400px) {
+      zoom: 85%;
+    }
+    .form-control {
+      background-color: $white;
+      color: $gray-dark;
+      padding: 1px 5px;
+      &::placeholder {
+        color: $gray-dark;
+      }
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+  @media screen and (max-width: 1400px) {
+    padding: 0 40px;
+  }
+  td:last-child {
+    @media screen and (max-width: 1400px) {
+      zoom: 85%;
+    }
+  }
+  td:nth-child(9) {
+    @media screen and (max-width: 1400px) {
+      max-width: 200px;
+    }
+  }
+  td,
+  th {
+    @media screen and (max-width: 1400px) {
+      padding: 5px 13px !important;
+    }
+  }
+  .btn-wrapper {
+    .icon-edit {
+      font-size: $font-size + 3px;
+      transition: 0.2s all ease-in-out;
+      margin: 0;
+      color: $gray-dark;
+      &:hover {
+        color: $primary;
+      }
+    }
+    .icon-delete {
+      font-size: $font-size + 3px;
+      transition: 0.2s all ease-in-out;
+      margin: 0;
+      color: $gray-dark;
+      &:hover {
+        color: $danger;
+      }
+    }
+  }
+  .edit-btn-wrapper {
+    .icon-approve {
+      margin: 12px 0;
+      font-size: $font-size + 10px;
+      transition: 0.2s all ease-in-out;
+      color: $success;
+    }
+    .icon-reject {
+      font-size: $font-size + 10px;
+      transition: 0.2s all ease-in-out;
+      margin-right: 5px;
+      color: $danger;
+    }
+  }
+}
+
+.btn-count {
+  @media screen and (max-width: 1400px) {
+    font-size: 14px;
+  }
+}
+
+.active-forms-table-wrapper {
+  @media screen and (max-width: 1400px) {
+    padding: 0 40px;
+  }
+  .icon-duplicate {
+    font-size: $font-size + 3px;
+    transition: 0.2s all ease-in-out;
+    margin: 0;
+    color: $gray-dark;
+    &:hover {
+      color: $orange;
+    }
+  }
+  .table .btn-duplicate {
+    padding: 14px 5px;
+    @media screen and (max-width: 1400px) {
+      padding: 5.5px 5px;
+    }
+  }
+  td:nth-child(8),
+  th:nth-child(8) {
+    max-width: 300px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    @media screen and (max-width: 1400px) {
+      max-width: 200px;
+    }
+  }
+  td,
+  th {
+    @media screen and (max-width: 1400px) {
+      padding: 7px 15px !important;
+    }
+  }
+  td:nth-child(9),
+  th:nth-child(9) {
+    @media screen and (max-width: 1400px) {
+      max-width: 200px;
+    }
+  }
+}
+
+.pending-approval-table-wrapper {
+  .dropdown-approve-comment,
+  .dropdown-reject-comment {
+    .dropdown-submit-label,
+    .btn-dropdown-cancel,
+    .btn-dropdown-save {
+      @media screen and (max-width: 1400px) {
+        font-size: 14px;
+      }
+    }
+  }
+  @media screen and (max-width: 1400px) {
+    padding: 0 40px;
+  }
+  td:nth-child(8),
+  th:nth-child(8) {
+    text-align: center;
+  }
+  td:nth-child(9),
+  th:nth-child(9) {
+    @media screen and (max-width: 1400px) {
+      max-width: 200px;
+    }
+  }
+  td,
+  th {
+    @media screen and (max-width: 1400px) {
+      padding: 5px 15px !important;
+    }
+  }
+
+  .icon-approve-line,
+  .icon-reject-line,
+  .icon-approve,
+  .icon-reject {
+    font-size: $font-size + 3px;
+  }
+
+  .dropdown-approve-comment,
+  .dropdown-reject-comment {
+    overflow: visible;
+    max-height: 200px;
+    margin-top: 5px !important;
+    margin-right: -5px !important;
+    .form-control {
+      height: 70px;
+      background-color: $white;
+      resize: none;
+    }
+    .icon-tip {
+      position: absolute;
+      transform: rotate(45deg);
+      width: 10px;
+      height: 10px;
+      background-color: $white;
+      border-top: 1px solid $gray-400;
+      border-left: 1px solid $gray-400;
+      top: -6px;
+      right: 10px;
+    }
+    .btn-reject {
+      color: $danger;
+      border-color: $danger;
+      background-color: $white;
+      &:hover {
+        background-color: $danger;
+        color: $white;
+      }
+    }
+    .btn-approve {
+      color: $success;
+      border-color: $success;
+      background-color: $white;
+      &:hover {
+        background-color: $success;
+        color: $white;
+      }
+    }
+  }
+  .btn-dropdown-cancel,
+  .btn-dropdown-save {
+    width: 100px;
+  }
+  .btn-dropdown-cancel {
+    border: 2px solid $primary;
+    color: $primary;
+    margin-right: 10px;
+    transition: 0.2s all ease-in-out;
+    &:hover {
+      background-color: $primary;
+      color: $white;
+    }
+  }
+  .btn-dropdown-save {
+    margin-left: 10px;
+    background-color: $primary;
+    color: $white;
+    border: 2px solid $primary;
+  }
+}
+
+.approved-table-wrapper {
+  .dropdown-reject-comment {
+    .dropdown-submit-label,
+    .btn-dropdown-cancel,
+    .btn-dropdown-save {
+      @media screen and (max-width: 1400px) {
+        font-size: 14px;
+      }
+    }
+  }
+  @media screen and (max-width: 1400px) {
+    padding: 0 40px;
+  }
+  td:nth-child(9),
+  th:nth-child(9) {
+    @media screen and (max-width: 1400px) {
+      max-width: 200px;
+    }
+  }
+  td,
+  th {
+    @media screen and (max-width: 1400px) {
+      padding: 5px 15px !important;
+    }
+  }
+
+  td:nth-child(8),
+  th:nth-child(8) {
+    text-align: center;
+  }
+  .icon-reject-line,
+  .icon-reject {
+    font-size: $font-size + 3px;
+  }
+  .dropdown-reject-comment {
+    overflow: visible;
+    max-height: 200px;
+    margin-top: 5px !important;
+    margin-right: -5px !important;
+    .form-control {
+      height: 70px;
+      background-color: $white;
+      resize: none;
+    }
+    .icon-tip {
+      position: absolute;
+      transform: rotate(45deg);
+      width: 10px;
+      height: 10px;
+      background-color: $white;
+      border-top: 1px solid $gray-400;
+      border-left: 1px solid $gray-400;
+      top: -6px;
+      right: 10px;
+    }
+    .btn-reject {
+      color: $danger;
+      border-color: $danger;
+      background-color: $white;
+      border-width: 2px;
+      &:hover {
+        background-color: $danger;
+        color: $white;
+      }
+    }
+  }
+  .btn-dropdown-cancel,
+  .btn-dropdown-save {
+    width: 100px;
+  }
+  .btn-dropdown-cancel {
+    border: 2px solid $primary;
+    color: $primary;
+    margin-right: 10px;
+    transition: 0.2s all ease-in-out;
+    &:hover {
+      background-color: $primary;
+      color: $white;
+    }
+  }
+}
+
+.draggable-items {
+  left: 0 !important;
+  label {
+    white-space: nowrap;
+    width: 230px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
+.pagination-wrapper {
+  background-color: #fafcfe;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  right: 12px;
+  bottom: 0px;
+  @media screen and (max-width: 1300px) {
+    bottom: 12px;
+  }
+  .pagination-list {
+    padding-left: 0;
+    list-style: none;
+    width: fit-content;
+    margin: 0 auto 30px auto;
+    box-shadow: 2px 2px 10px $gray-300;
+    @media screen and (max-width: 1400px) {
+      margin-bottom: 15px;
+    }
+    @media screen and (max-width: 1300px) {
+      margin-bottom: 3px;
+    }
+  }
+  .pagination-item {
+    color: $primary;
+    background-color: $white;
+    @media screen and (max-width: 1400px) {
+      font-size: $font-size - 2;
+    }
+    cursor: pointer;
+    border: 1px solid $gray-400;
+    border-right: 0;
+    padding: 8px 12px;
+    @media screen and (max-width: 1400px) {
+      padding: 6px 10px;
+    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:last-child {
+      border: 1px solid $gray-400;
+    }
+  }
+  .active-pagination-item {
+    background-color: $primary;
+    color: $white;
+  }
+}
+
+.in-progress-table-wrapper,
+.active-forms-table-wrapper,
+.approved-table-wrapper,
+.pending-approval-table-wrapper {
+  .form-date,
+  .form-time {
+    @media screen and (max-width: 1400px) {
+      font-size: 12px;
+    }
+  }
+}
+
+.approved-table-wrapper {
+  tr .btn-reject {
+    padding: 0;
+  }
+}
+
+.configuration-table-wrapper table .btn {
+  @media screen and (max-width: 1400px) {
+    padding: 2px 5px;
+  }
+}
+
+.in-progress-table-wrapper,
+.access-management-table-wrapper,
+.configuration-table-wrapper,
+.active-forms-table-wrapper,
+.pending-approval-table-wrapper,
+.approved-table-wrapper {
+  @media screen and (max-width: 1400px) {
+    padding-bottom: 54px;
+  }
+  padding-bottom: 90px;
+}
+
+.text-ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.text-bold {
+  font-weight: 500;
+}
