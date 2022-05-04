@@ -14,6 +14,7 @@
     display: flex;
     flex-wrap: wrap;
     font-family: "Pacifico", cursive;
+    text-decoration: none;
     span:first-child {
       color: $secondary;
     }
@@ -28,6 +29,9 @@
       border: 2px solid;
       width: 30px;
       border-radius: 4px;
+    }
+    &:hover {
+      color: $white;
     }
   }
 }

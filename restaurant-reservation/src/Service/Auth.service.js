@@ -1,8 +1,7 @@
 import { API_URI } from "./../Constant/Constant";
+import { ClearStore, GetUserFromStore } from "./Storage";
 
 export const signIn = (body) => {
-  console.log("signIn");
-
   return fetch(`${API_URI}/authenticate`, {
     method: "POST",
     headers: {
@@ -12,10 +11,18 @@ export const signIn = (body) => {
   }).catch((err) => alert(err));
 };
 
-export const signUp = () => {
-  console.log("signUp");
+export const signUp = (body) => {
+  const { token } = GetUserFromStore();
+  return fetch(`http://localhost:8080/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(body),
+  });
 };
 
-export const signOut = () => {
-  console.log("signOut");
+export const SignOut = () => {
+  ClearStore();
 };

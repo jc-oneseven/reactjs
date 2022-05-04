@@ -1,6 +1,10 @@
 import Login from "../Login/Login";
+import Register from "../Register/Register";
 
 const Modal = (props) => {
+  function handleRegisterFormSubmit() {
+    props.closeModal();
+  }
   return (
     <div className="modal">
       <div className="modal-dialog">
@@ -11,8 +15,15 @@ const Modal = (props) => {
         >
           <span className="btn-close me-2"></span> Close
         </button>
-
-        <Login closeModal={props.closeModal} />
+        {props.component === "login" ? (
+          <Login closeModal={props.closeModal} />
+        ) : (
+          <Register
+            formSubmit={handleRegisterFormSubmit}
+            title="Sign Up"
+            tagLine="Create your account to reserve your favorite restaurant"
+          />
+        )}
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { signIn } from "../../Service/Auth.service";
+import { SetUserInStore } from "../../Service/Storage";
 
 const Login = (props) => {
   const [loginData, setLoginData] = useState({
@@ -27,9 +28,12 @@ const Login = (props) => {
         const { username } = loginData;
 
         // Store loggedIn User info
-        localStorage.setItem("user", JSON.stringify({ ...data, username }));
+        SetUserInStore(JSON.stringify({ ...data, username }));
 
         props.closeModal();
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 
