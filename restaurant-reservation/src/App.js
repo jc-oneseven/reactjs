@@ -11,6 +11,7 @@ import { Route } from "react-router-dom";
 import RestaurantDetails from "./Components/RestaurantDetails/RestaurantDetails";
 import { Switch } from "react-router-dom";
 import Admin from "./Pages/Admin";
+import Owner from "./Pages/Owner";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -60,6 +61,15 @@ const App = () => {
       <Switch>
         <Route path={"/admin"}>
           <Admin
+            isLoggedIn={isLoggedIn}
+            logout={logout}
+            showModal={showModal}
+            userName={activeUser}
+            currentUserRole={currentUserRole}
+          />
+        </Route>
+        <Route path={"/owner"}>
+          <Owner
             isLoggedIn={isLoggedIn}
             logout={logout}
             showModal={showModal}
