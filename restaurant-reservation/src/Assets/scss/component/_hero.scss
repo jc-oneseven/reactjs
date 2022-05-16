@@ -2,6 +2,8 @@
   background-color: $primary;
   min-height: 400px;
   background-image: url("../../images/hero-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   &--content {

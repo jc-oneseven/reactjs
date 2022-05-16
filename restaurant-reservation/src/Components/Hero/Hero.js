@@ -1,23 +1,47 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { GetRestaurants } from "../../Service/GetRestaurants";
 import { GetUserFromStore } from "../../Service/Storage";
 import Header from "../Header/Header";
 
 const Hero = (props) => {
+  const [restaurants, setRestaurants] = useState([]);
+  const [searchText, setSearchText] = useState("");
+
   function handleChange(event) {
-    console.log(event);
+    const inputText = event.target.value;
+
+    inputText !== ""
+      ? GetRestaurants(inputText)
+          .then((res) => res.json())
+          .then((data) => setRestaurants(data))
+      : setRestaurants([]);
+
+    setSearchText(inputText);
   }
 
-  function findRestaurants(event) {
-    event.preventDefault();
-
-    const { token } = GetUserFromStore();
-    fetch("http://localhost:8080/restaurants/1", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+  function handleClick(event) {
+    console.log(this);
+    setSearchText(this);
+    setRestaurants([]);
   }
+
+  function handleDateChange(event) {
+    props.setDate(event.target.value);
+  }
+
+  // function findRestaurants(event) {
+  //   event.preventDefault();
+
+  //   const { token } = GetUserFromStore();
+  //   fetch("http://localhost:8080/restaurants/1", {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => console.log(data));
+  // }
 
   return (
     <section className="Hero">
@@ -50,6 +74,9 @@ const Hero = (props) => {
                   id="floatingInput"
                   name="date"
                   placeholder="Select Date"
+                  min={props.searchDate}
+                  value={props.searchDate}
+                  onChange={handleDateChange}
                 />
                 <label htmlFor="floatingInput">Date</label>
               </div>
@@ -60,17 +87,32 @@ const Hero = (props) => {
                   id="floatingInput"
                   name="Search"
                   placeholder="Search Restraurants"
-                  value={"Crazy Eggs"}
                   onChange={handleChange}
+                  value={searchText}
                 />
                 <label htmlFor="floatingInput">Search Restraurants</label>
+
+                {restaurants.length > 0 && (
+                  <div className="list-group">
+                    {restaurants.map((restaurant, index) => (
+                      <Link
+                        key={index}
+                        className="list-group-item list-group-item-action text-primary text-decoration-none"
+                        onClick={handleClick.bind(restaurant.name)}
+                        to={`/restautants/${restaurant.id}`}
+                      >
+                        {restaurant.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
-              <button
+              {/* <button
                 onClick={findRestaurants}
                 className="btn-secondary col-2 rounded-3"
               >
                 Search
-              </button>
+              </button> */}
             </div>
           </form>
         </div>

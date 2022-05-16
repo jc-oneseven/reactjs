@@ -18,6 +18,7 @@ const RestaurantList = (props) => {
       <header className="List--title">
         <h4> {props.title} </h4>
       </header>
+
       <div className="row row-cols-1 row-cols-md-3 g-4">
         {restaurants.length > 0 &&
           restaurants.map((item) => (
@@ -26,6 +27,9 @@ const RestaurantList = (props) => {
             </div>
           ))}
       </div>
+      {restaurants.length === 0 && (
+        <div className="alert alert-info"> No restaurants found. </div>
+      )}
     </section>
   );
 };

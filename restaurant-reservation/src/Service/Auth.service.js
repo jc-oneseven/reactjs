@@ -12,15 +12,15 @@ export const signIn = (body) => {
 };
 
 export const signUp = (body) => {
-  const { token } = GetUserFromStore();
+  // const { token } = GetUserFromStore();
   return fetch(`http://localhost:8080/users`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      // Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(body),
-  });
+  }).catch((err) => alert("Something went wrong, please try again"));
 };
 
 export const SignOut = () => {
