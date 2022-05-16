@@ -214,16 +214,7 @@ const RestaurantDetails = (props) => {
 
           <div className="card-body row">
             <div className="col-8 mb-4">
-              <p className="card-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
-                deleniti veniam laborum soluta veritatis mollitia fugit,
-                doloribus suscipit reprehenderit. Tempore id aspernatur rem,
-                illum repudiandae nisi beatae aliquam odit nihil. Lorem ipsum
-                dolor sit amet consectetur adipisicing elit. Iste deleniti
-                veniam laborum soluta veritatis mollitia fugit, doloribus
-                suscipit reprehenderit. Tempore id aspernatur rem, illum
-                repudiandae nisi beatae aliquam odit nihil.
-              </p>
+              <p className="card-text">{restaurant.description}</p>
               <p className="card-text">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
                 deleniti veniam laborum soluta veritatis mollitia fugit,
