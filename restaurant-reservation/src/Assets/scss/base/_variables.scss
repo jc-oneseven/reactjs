@@ -1,0 +1,45 @@
+/* Fonts family */
+
+$font-family-sans-serif: "Inter", sans-serif;
+$font-size: 16px;
+$font-light: 300;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+/* -- */
+
+$border-radius: 5px;
+/* -- */
+
+/*  box-shadow  */
+
+$box-shadow: 1.5px 2.598px 10px 0;
+$box-light-shadow: 0 2px 3px 0px;
+
+/* -- */
+
+// Container outer space
+$container-outer-padding: 1.5em;
+
+// Forms
+$input-bg: $white;
+$input-font-size: $font-size - 3;
+$form-select-indicator-color: $gray-800;
+$form-select-indicator: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'><path stroke-linejoin='miter' stroke='#{$form-select-indicator-color}' stroke-linecap='butt' stroke-miterlimit='4' stroke-width='46.5455'  fill='#000' d='M110.549 257.818c-0.005 0-0.011 0-0.016 0-30.511 0-55.244 24.733-55.244 55.244 0 15.259 6.187 29.074 16.188 39.072l400.075 400.075c10.050 9.915 23.832 16.070 39.050 16.172h0.019c0.088 0.001 0.193 0.001 0.298 0.001 15.163 0 28.882-6.185 38.769-16.168l400.080-400.080c11.633-10.138 18.943-24.979 18.943-41.526 0-30.369-24.62-54.989-54.989-54.989-16.040 0-30.475 6.868-40.526 17.823l-0.037 0.041-361.685 362.451-361.941-361.941c-10.010-9.982-23.818-16.158-39.068-16.172h-0.003z'></path></svg>");
+
+// Form label
+$form-label-font-size: $font-size - 2;
+$form-label-color: $gray-dark;
+$form-label-font-weight: $font-semibold;
+
+// Buttons
+
+$btn-padding-y: 0.375em;
+$btn-padding-x: 1.875em;
+$btn-font-size: $font-size - 2;
+$btn-font-weight: $font-semibold;
+
+// Dropdown
+// $dropdown-link-color:               $gray-900 !default;
+// $dropdown-link-hover-color:         shade-color($dropdown-link-color, 10%) !default;
+$dropdown-link-hover-bg: $primary-light;

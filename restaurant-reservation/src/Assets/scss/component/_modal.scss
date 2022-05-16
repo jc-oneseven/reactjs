@@ -1,0 +1,14 @@
+.modal {
+  display: block;
+  background-color: rgba($black, 0.85);
+  .modal-dialog {
+    background-color: $white;
+    padding: 2em;
+    pointer-events: all;
+    .btn-modal-closer {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}

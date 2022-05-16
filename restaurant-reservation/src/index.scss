@@ -1,0 +1,14 @@
+// App Base files--> Colors, Variable and directives
+@import "./Assets/scss/base/index";
+
+// Bootstrap Required partials
+@import "./Assets/scss/vendor/bootstrap-base";
+
+// Bootstrap components
+@import "./Assets/scss/vendor/bootstrap-component";
+
+// App Layout --> Sidebar, Topbar and Content
+@import "./Assets/scss/layout/index";
+
+// Add Custom component style
+@import "./Assets/scss/component/index";

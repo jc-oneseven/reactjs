@@ -1,0 +1,22 @@
+.Hero {
+  background-color: $primary;
+  min-height: 400px;
+  background-image: url("../../images/hero-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  &--content {
+    padding: 2em;
+    height: 100%;
+    &--header {
+      color: $secondary;
+      text-align: center;
+      text-shadow: 1px 1px 20px $primary;
+      &--title {
+        letter-spacing: -1px;
+        font-size: 2.5em;
+      }
+    }
+  }
+}
