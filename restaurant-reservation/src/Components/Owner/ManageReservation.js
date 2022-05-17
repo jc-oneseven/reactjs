@@ -14,6 +14,7 @@ const ManageReservation = (props) => {
             <thead>
               <tr>
                 <th> Reservation Number </th>
+                <th> Customer Info </th>
                 <th> Restaurant Name </th>
                 <th> Time Slot </th>
                 <th> Reservation Date </th>
@@ -24,6 +25,14 @@ const ManageReservation = (props) => {
               {props.reservations.map((item) => (
                 <tr key={item.id}>
                   <td>{item.reservationNumber}</td>
+                  <td>
+                    <div>
+                      {item.user.firstName} {item.user.lastName}
+                    </div>
+                    <a className="small" href={`mailto:${item.user.email}`}>
+                      {item.user.email}
+                    </a>
+                  </td>
                   <td> {item.restaurant.name} </td>
                   <td>{item.slot.slot}</td>
                   <td>
