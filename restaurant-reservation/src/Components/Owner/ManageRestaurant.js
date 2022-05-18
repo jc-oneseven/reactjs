@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import { cities, seatingOptions } from "../../Constant/Constant";
 import { GetCuisines } from "../../Service/GetCuisines";
-import { GetRestaurantsByOwner } from "../../Service/GetRestaurants";
 
 const ManageRestaurant = (props) => {
   const [cuisines, setCuisines] = useState([]);
+  const [seatings, setSeatings] = useState(seatingOptions);
   const [newRestaurant, setNewRestaurant] = useState({
     name: "",
     description: "",
@@ -17,52 +16,140 @@ const ManageRestaurant = (props) => {
     cuisines: [],
     seating: [],
     tables: 0,
+    imageData: "",
+    imageName: "",
   });
 
+  const [editRestaurant, setEditRestaurant] = useState({
+    name: "",
+    description: "",
+    email: "",
+    phone: "",
+    city: null,
+    address: "",
+    pincode: "",
+    cuisines: [],
+    seating: [],
+    tables: 0,
+    imageData: "",
+    imageName: "",
+  });
+  const [isEditMode, setIsEditMode] = useState(false);
   // GetCuisines
-  GetCuisines();
+  // GetCuisines();
   useEffect(function () {
     GetCuisines()
       .then((res) => res.json())
       .then((data) => {
-        setCuisines(data);
+        setCuisines(() => {
+          return data.map((newData) => {
+            return {
+              ...newData,
+              isChecked: false,
+            };
+          });
+        });
       });
   }, []);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
 
   // Add Restaurant
   function handleChange(event) {
     const { name, value } = event.target;
-    setNewRestaurant((prevRestaurant) => {
-      return {
-        ...prevRestaurant,
-        [name]: value,
-      };
-    });
+    if (isEditMode) {
+      setEditRestaurant((prevRestaurant) => {
+        return {
+          ...prevRestaurant,
+          [name]: value,
+        };
+      });
+    } else {
+      setNewRestaurant((prevRestaurant) => {
+        return {
+          ...prevRestaurant,
+          [name]: value,
+        };
+      });
+    }
   }
 
   function handleCheckboxChange(event) {
     const { name, value, type, checked } = event.target;
     console.log(name, value, type, checked);
 
-    setNewRestaurant((prevRestaurant) => {
-      if (checked) {
-        prevRestaurant[name].push(value);
-      } else {
-        prevRestaurant[name] = prevRestaurant[name].filter((id) => id != value);
-      }
+    if (isEditMode) {
+      setEditRestaurant((prevRestaurant) => {
+        if (checked) {
+          prevRestaurant[name].push(parseInt(value));
+        } else {
+          prevRestaurant[name] = prevRestaurant[name].filter(
+            (id) => id != value
+          );
+        }
 
-      return {
-        ...prevRestaurant,
-      };
-    });
+        return {
+          ...prevRestaurant,
+        };
+      });
+    } else {
+      setNewRestaurant((prevRestaurant) => {
+        if (checked) {
+          prevRestaurant[name].push(parseInt(value));
+        } else {
+          prevRestaurant[name] = prevRestaurant[name].filter(
+            (id) => id != value
+          );
+        }
+
+        return {
+          ...prevRestaurant,
+        };
+      });
+    }
+
+    if (name == "cuisines") {
+      setCuisines((prevCuisines) => {
+        return prevCuisines.map((cuisines) => {
+          // console.log(value);
+          if (checked && cuisines.id == value) {
+            console.log({ ...cuisines, isChecked: true });
+            return {
+              ...cuisines,
+              isChecked: true,
+            };
+          } else if (!checked && cuisines.id == value) {
+            return {
+              ...cuisines,
+              isChecked: false,
+            };
+          } else {
+            return cuisines;
+          }
+        });
+      });
+    } else {
+      setSeatings((prevSeatings) => {
+        return prevSeatings.map((seating) => {
+          // console.log(value);
+          if (checked && seating.id == value) {
+            console.log({ ...seating, isChecked: true });
+            return {
+              ...seating,
+              isChecked: true,
+            };
+          } else if (!checked && seating.id == value) {
+            return {
+              ...seating,
+              isChecked: false,
+            };
+          } else {
+            return seating;
+          }
+        });
+      });
+    }
   }
-  function handleAddRestaurant(data, event) {
+
+  function handleAddRestaurant(event) {
     event.preventDefault();
 
     props.handleAddRestaurantForm(newRestaurant);
@@ -83,7 +170,80 @@ const ManageRestaurant = (props) => {
 
     // Reset Cuisines as well
     setCuisines([]);
+    setSeatings(seatings);
   }
+
+  function handleEditRestaurant(event) {
+    event.preventDefault();
+
+    props.handleEditRestaurantForm(editRestaurant);
+
+    setIsEditMode(false);
+    // Reset Form
+    setEditRestaurant({});
+
+    // Reset Cuisines
+    console.log(cuisines);
+    debugger;
+    setCuisines((prevCuisines) => {
+      return prevCuisines.map((newData) => {
+        return {
+          ...newData,
+          isChecked: false,
+        };
+      });
+    });
+    // Reset seating
+    setSeatings((preSeatings) => {
+      return preSeatings.map((newData) => {
+        return {
+          ...newData,
+          isChecked: false,
+        };
+      });
+    });
+  }
+
+  function handleEditClick(data, event) {
+    event.preventDefault();
+    console.log(data);
+    console.log(data.seatings);
+
+    const getCuisineIds = data.cuisines.map((item) => item.id);
+    const getSeatingIds = data.seatings.map((item) => item.id);
+    const getCityId = data.city.id;
+
+    setIsEditMode(true);
+    setEditRestaurant(() => {
+      return {
+        ...data,
+        cuisines: [...getCuisineIds],
+        seating: [...getSeatingIds],
+        city: getCityId,
+        imageData: "",
+        imageName: "",
+      };
+    });
+    setCuisines((prevCuisines) => {
+      return prevCuisines.map((cuisines) => {
+        return {
+          ...cuisines,
+          isChecked: data.cuisines.some((item) => item.id == cuisines.id),
+        };
+      });
+    });
+
+    setSeatings((prevSeatings) => {
+      return prevSeatings.map((seating) => {
+        return {
+          ...seating,
+          isChecked: data.seatings.some((item) => item.id == seating.id),
+        };
+      });
+    });
+  }
+
+  console.log(editRestaurant);
 
   return (
     <div>
@@ -95,11 +255,12 @@ const ManageRestaurant = (props) => {
         <div className="col-4 border-end pt-2 bg-gray form-restaurant">
           <form
             className="needs-validation"
-            noValidate
-            onSubmit={handleSubmit(handleAddRestaurant)}
+            onSubmit={isEditMode ? handleEditRestaurant : handleAddRestaurant}
           >
             <header className="form-header px-4">
-              <h3 className="mt-3"> Add Restaurant </h3>
+              <h3 className="mt-3">
+                {isEditMode ? "Edit Restaurant" : "Add Restaurant"}
+              </h3>
               <p>
                 Register your restaurant to better rich and get more
                 reservations
@@ -111,40 +272,34 @@ const ManageRestaurant = (props) => {
               <div className="form-floating mb-3">
                 <input
                   type="text"
-                  className={`form-control ${errors.name ? "is-invalid" : ""} `}
+                  className="form-control"
                   id="name"
                   placeholder="name"
+                  required
                   name="name"
                   autoComplete="off"
-                  value={newRestaurant.name}
-                  {...register("name", { required: true })}
+                  value={isEditMode ? editRestaurant.name : newRestaurant.name}
                   onChange={handleChange}
                 />
                 <label htmlFor="name">Name</label>
-                {errors.name && (
-                  <p className="invalid-feedback">Please check the Name</p>
-                )}
               </div>
               {/* description */}
               <div className="form-floating mb-3">
                 <textarea
-                  className={`form-control ${
-                    errors.description ? "is-invalid" : ""
-                  } `}
+                  className="form-control"
                   id="description"
                   placeholder="description"
                   name="description"
+                  required
                   autoComplete="off"
-                  value={newRestaurant.description}
-                  {...register("description", { required: true })}
+                  value={
+                    isEditMode
+                      ? editRestaurant.description
+                      : newRestaurant.description
+                  }
                   onChange={handleChange}
                 />
                 <label htmlFor="description">Description</label>
-                {errors.description && (
-                  <p className="invalid-feedback">
-                    Please check the Description
-                  </p>
-                )}
               </div>
 
               <h6> Contact Details </h6>
@@ -152,53 +307,44 @@ const ManageRestaurant = (props) => {
               <div className="form-floating mb-3">
                 <input
                   type="email"
-                  className={`form-control ${
-                    errors.email ? "is-invalid" : ""
-                  } `}
+                  className="form-control"
                   id="email"
+                  required
                   placeholder="Email"
                   name="email"
                   autoComplete="off"
-                  value={newRestaurant.email}
-                  {...register("email", {
-                    required: true,
-                    pattern:
-                      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                  })}
+                  value={
+                    isEditMode ? editRestaurant.email : newRestaurant.email
+                  }
                   onChange={handleChange}
                 />
                 <label htmlFor="email">Email</label>
-                {errors.email && (
-                  <p className="invalid-feedback">Please check the Email</p>
-                )}
               </div>
               {/* phone */}
               <div className="form-floating mb-3">
                 <input
                   type="text"
-                  className={`form-control ${
-                    errors.phone ? "is-invalid" : ""
-                  } `}
+                  className="form-control"
                   id="phone"
+                  required
                   placeholder="phone"
                   name="phone"
                   autoComplete="off"
-                  value={newRestaurant.phone}
-                  {...register("phone", { required: true })}
+                  value={
+                    isEditMode ? editRestaurant.phone : newRestaurant.phone
+                  }
                   onChange={handleChange}
                 />
                 <label htmlFor="phone">Phone</label>
-                {errors.phone && (
-                  <p className="invalid-feedback">Please check the Phone</p>
-                )}
               </div>
               {/* city */}
               <div className="form-floating mb-3">
                 <select
-                  className={`form-select ${errors.city ? "is-invalid" : ""} `}
+                  className={`form-select`}
                   name="city"
-                  {...register("city", { required: true })}
+                  required
                   onChange={handleChange}
+                  value={isEditMode ? editRestaurant.city.id : "-0"}
                 >
                   <option defaultValue={-0}> Select City </option>
                   {cities.map((city) => (
@@ -208,69 +354,57 @@ const ManageRestaurant = (props) => {
                   ))}
                 </select>
                 <label htmlFor="city">City</label>
-                {errors.city && (
-                  <p className="invalid-feedback">Please check the city</p>
-                )}
               </div>
               {/* address */}
               <div className="form-floating mb-3">
                 <textarea
-                  className={`form-control ${
-                    errors.address ? "is-invalid" : ""
-                  } `}
+                  className={`form-control`}
                   id="address"
                   placeholder="address"
+                  required
                   name="address"
                   autoComplete="off"
-                  value={newRestaurant.address}
-                  {...register("address", { required: true })}
+                  value={
+                    isEditMode ? editRestaurant.address : newRestaurant.address
+                  }
                   onChange={handleChange}
                 />
                 <label htmlFor="address">Address</label>
-                {errors.address && (
-                  <p className="invalid-feedback">Please check the address</p>
-                )}
               </div>
               {/* pincode */}
               <div className="form-floating mb-3">
                 <input
                   type="text"
-                  className={`form-control ${
-                    errors.pincode ? "is-invalid" : ""
-                  } `}
+                  className={`form-control`}
                   id="pincode"
                   placeholder="pincode"
+                  required
                   name="pincode"
                   autoComplete="off"
-                  value={newRestaurant.pincode}
-                  {...register("pincode", { required: true })}
+                  value={
+                    isEditMode ? editRestaurant.pincode : newRestaurant.pincode
+                  }
                   onChange={handleChange}
                 />
                 <label htmlFor="pincode">Pincode</label>
-                {errors.pincode && (
-                  <p className="invalid-feedback">Please check the pincode</p>
-                )}
               </div>
               <h6> Additional Details </h6>
               {/* tables */}
               <div className="form-floating mb-3">
                 <input
                   type="number"
-                  className={`form-control ${
-                    errors.tables ? "is-invalid" : ""
-                  } `}
+                  className={`form-control`}
                   id="tables"
+                  required
                   placeholder="tables"
                   name="tables"
                   autoComplete="off"
-                  value={newRestaurant.tables}
-                  {...register("tables", { required: true })}
+                  value={
+                    isEditMode ? editRestaurant.tables : newRestaurant.tables
+                  }
                   onChange={handleChange}
                 />
                 <label htmlFor="tables">No. of Tables</label>
-                {errors.tables && (
-                  <p className="invalid-feedback">Please check the tables</p>
-                )}
               </div>
               {/* cuisines */}
               <div className="mb-3">
@@ -285,6 +419,7 @@ const ManageRestaurant = (props) => {
                           value={cuisine.id}
                           id={`${cuisine.id}${cuisine.name}`}
                           name="cuisines"
+                          checked={cuisine.isChecked}
                           onChange={handleCheckboxChange}
                         />
                         <label
@@ -301,7 +436,7 @@ const ManageRestaurant = (props) => {
               <div className="mb-3">
                 <label className="form-label">Select Seating</label>
                 <div className="d-flex flex-wrap gap-2">
-                  {seatingOptions.map((seating) => (
+                  {seatings.map((seating) => (
                     <div key={seating.name} className="form-check">
                       <input
                         className="form-check-input"
@@ -309,6 +444,7 @@ const ManageRestaurant = (props) => {
                         value={seating.id}
                         id={`${seating.id}${seating.name}`}
                         name="seating"
+                        checked={seating.isChecked}
                         onChange={handleCheckboxChange}
                       />
                       <label
@@ -324,7 +460,7 @@ const ManageRestaurant = (props) => {
             </section>
             <footer className="form-footer p-4">
               <button type="submit" className="btn btn-secondary">
-                Add
+                {isEditMode ? "Save" : "Add"}
               </button>
             </footer>
           </form>
@@ -367,7 +503,12 @@ const ManageRestaurant = (props) => {
                           <small>{restaurant.email}</small>
                         </a>
 
-                        <button className="btn btn-primary ms-3">Edit</button>
+                        <button
+                          onClick={handleEditClick.bind(this, restaurant)}
+                          className="btn btn-primary ms-3"
+                        >
+                          Edit
+                        </button>
                       </div>
                     </div>
                     {/* Description */}

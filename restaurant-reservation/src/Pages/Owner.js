@@ -9,6 +9,7 @@ import ManageReservation from "../Components/Owner/ManageReservation";
 import { GetRestaurantsByOwner } from "../Service/GetRestaurants";
 import { getReservationsByOwner } from "../Service/getReservations";
 import { CreateRestaurant } from "../Service/CreateRestaurant";
+import { EditRestaurant } from "../Service/EditRestaurant";
 
 const Owner = (props) => {
   const [restaurants, setRestaurants] = useState([]);
@@ -40,6 +41,24 @@ const Owner = (props) => {
         setIsNewRestaurant(true);
       })
       .finally(setIsNewRestaurant(false));
+  }
+
+  function handleEditRestaurantForm(updatedRestaurant) {
+    const id = updatedRestaurant.id;
+
+    delete updatedRestaurant.id;
+    delete updatedRestaurant.user;
+    delete updatedRestaurant.seatings;
+
+    // const modifyRes = delete updatedRestaurant.cuisines.name;
+
+    console.log(updatedRestaurant);
+    // EditRestaurant(id, updatedRestaurant)
+    //   .then((res) => res.json())
+    //   .then(() => {
+    //     setIsNewRestaurant(true);
+    //   })
+    //   .finally(setIsNewRestaurant(false));
   }
 
   return (
@@ -89,6 +108,7 @@ const Owner = (props) => {
             <ManageRestaurant
               restaurants={restaurants}
               handleAddRestaurantForm={handleAddRestaurantForm}
+              handleEditRestaurantForm={handleEditRestaurantForm}
             />
           </Route>
           <Route path={"/owner/reservations"}>

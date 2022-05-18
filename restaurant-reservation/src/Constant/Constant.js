@@ -32,8 +32,8 @@ export const cities = [
 ];
 
 export const seatingOptions = [
-  { id: 1, name: "Standard" },
-  { id: 2, name: "Counter" },
-  { id: 3, name: "Bar" },
-  { id: 4, name: "Outdoor" },
+  { id: 1, name: "Standard", isChecked: false },
+  { id: 2, name: "Counter", isChecked: false },
+  { id: 3, name: "Bar", isChecked: false },
+  { id: 4, name: "Outdoor", isChecked: false },
 ];
